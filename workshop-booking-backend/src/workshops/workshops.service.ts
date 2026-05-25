@@ -18,7 +18,7 @@ export class WorkshopsService {
 
   async findAll(): Promise<Workshop[]> {
     return this.workshopRepository.find({
-      relations: ['bookings'],
+      relations: { bookings: true },
       order: { date: 'ASC' },
     });
   }
@@ -26,7 +26,7 @@ export class WorkshopsService {
   async findOne(id: number): Promise<Workshop> {
     const workshop = await this.workshopRepository.findOne({
       where: { id },
-      relations: ['bookings'],
+      relations: { bookings: true },
     });
     if (!workshop) {
       throw new NotFoundException('Мастер-класс не найден.');

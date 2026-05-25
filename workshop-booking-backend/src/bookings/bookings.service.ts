@@ -39,7 +39,7 @@ export class BookingsService {
   async findOne(id: number): Promise<Booking> {
     const booking = await this.bookingRepository.findOne({
       where: { id },
-      relations: ['user', 'workshop', 'workshop.bookings'],
+      relations: { user: true, workshop: { bookings: true } },
     });
     if (!booking) {
       throw new NotFoundException('Бронирование не найдено.');

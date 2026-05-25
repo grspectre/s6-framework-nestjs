@@ -24,7 +24,7 @@ export class OwnerOrAdminGuard implements CanActivate {
 
     const booking = await this.bookingRepository.findOne({
       where: { id: bookingId },
-      relations: ['user'],
+      relations: { user: true },
     });
 
     if (!booking) {
