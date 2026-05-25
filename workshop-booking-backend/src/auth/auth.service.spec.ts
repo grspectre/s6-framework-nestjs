@@ -18,7 +18,11 @@ const mockUser = {
 const mockUsersService = {
   findByUsername: jest.fn(),
   createUser: jest.fn(),
-  toPublicDto: jest.fn((u) => ({ id: u.id, username: u.username, role: u.role })),
+  toPublicDto: jest.fn((u) => ({
+    id: u.id,
+    username: u.username,
+    role: u.role,
+  })),
 };
 
 const mockJwtService = {

@@ -29,8 +29,12 @@ const mockWorkshop = {
   bookings: [],
   createdAt: new Date(),
   updatedAt: new Date(),
-  get isPast() { return this.date < new Date(); },
-  get availableSpots() { return this.maxParticipants - this.bookings.length; },
+  get isPast() {
+    return this.date < new Date();
+  },
+  get availableSpots() {
+    return this.maxParticipants - this.bookings.length;
+  },
 };
 
 const mockBooking = {
@@ -74,7 +78,7 @@ describe('BookingsService', () => {
     it('должен создать бронирование', async () => {
       mockWorkshopsService.findOne.mockResolvedValue(mockWorkshop);
       mockBookingRepo.findOne
-        .mockResolvedValueOnce(null)   // проверка дубля
+        .mockResolvedValueOnce(null) // проверка дубля
         .mockResolvedValueOnce(mockBooking); // финальный findOne
       mockBookingRepo.create.mockReturnValue(mockBooking);
       mockBookingRepo.save.mockResolvedValue(mockBooking);
@@ -96,7 +100,9 @@ describe('BookingsService', () => {
       const pastWorkshop = {
         ...mockWorkshop,
         date: new Date(Date.now() - 1000 * 60 * 60 * 24),
-        get isPast() { return true; },
+        get isPast() {
+          return true;
+        },
       };
       mockWorkshopsService.findOne.mockResolvedValue(pastWorkshop);
 
@@ -109,8 +115,12 @@ describe('BookingsService', () => {
       const fullWorkshop = {
         ...mockWorkshop,
         bookings: Array(10).fill({}),
-        get isPast() { return false; },
-        get availableSpots() { return 0; },
+        get isPast() {
+          return false;
+        },
+        get availableSpots() {
+          return 0;
+        },
       };
       mockWorkshopsService.findOne.mockResolvedValue(fullWorkshop);
 

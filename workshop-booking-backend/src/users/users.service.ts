@@ -31,7 +31,9 @@ export class UsersService {
       where: [{ username: data.username }, { email: data.email }],
     });
     if (existingUser) {
-      throw new ConflictException('Пользователь с таким именем или email уже существует.');
+      throw new ConflictException(
+        'Пользователь с таким именем или email уже существует.',
+      );
     }
 
     const hashedPassword = await bcrypt.hash(data.password, 10);

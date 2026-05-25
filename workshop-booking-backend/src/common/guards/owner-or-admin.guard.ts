@@ -36,7 +36,9 @@ export class OwnerOrAdminGuard implements CanActivate {
 
     // Обычный пользователь — только к своим
     if (booking.user.id !== user.id) {
-      throw new ForbiddenException('Вы не являетесь владельцем этого бронирования.');
+      throw new ForbiddenException(
+        'Вы не являетесь владельцем этого бронирования.',
+      );
     }
 
     // Прикрепляем бронирование к запросу, чтобы не запрашивать повторно

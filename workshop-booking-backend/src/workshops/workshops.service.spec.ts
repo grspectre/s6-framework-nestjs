@@ -18,8 +18,12 @@ const mockWorkshop = {
   bookings: [],
   createdAt: new Date(),
   updatedAt: new Date(),
-  get isPast() { return this.date < new Date(); },
-  get availableSpots() { return this.maxParticipants - this.bookings.length; },
+  get isPast() {
+    return this.date < new Date();
+  },
+  get availableSpots() {
+    return this.maxParticipants - this.bookings.length;
+  },
 };
 
 const mockRepo = {
